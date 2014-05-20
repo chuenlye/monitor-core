@@ -351,6 +351,10 @@ write_data_to_rrd ( const char *source, const char *host, const char *metric,
                     const char *sum, const char *num, unsigned int step,
                     unsigned int process_time, ganglia_slope_t slope)
 {
+   if ( strstr(metric, "a4c") != NULL && !host ) { 
+      return 0;
+   }
+
    char rrd[ PATHSIZE + 1 ];
    char *summary_dir = "__SummaryInfo__";
    int i;
